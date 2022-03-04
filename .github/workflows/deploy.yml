@@ -41,13 +41,6 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: site
-          
-      - name: Find and Replace
-        uses: jacobtomlinson/gha-find-replace@v2
-        with:
-          find: '"/'
-          replace: '"./'
-          regex: false
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
