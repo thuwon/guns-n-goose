@@ -54,3 +54,5 @@ jobs:
         with:
           branch: gh-pages
           folder: "site"
+          clean-exclude: |
+            404.html
