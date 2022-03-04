@@ -1,0 +1,7 @@
+{
+  "imports": {
+    "gun": "https://cdn.skypack.dev/gun",
+    "gun/sea": "https://cdn.skypack.dev/gun/sea",
+    "gun/axe": "https://cdn.skypack.dev/gun/axe"
+  }
+}
