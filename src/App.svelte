@@ -12,9 +12,6 @@
     {'path': '/about', 'component': About},
   ]
 
-  const paths = routes.map(route => route.path);
-  console.log(paths)
-
   const loadApp = new Promise((resolve, reject) => {
     if (!routes.map(route => route.path).includes(window.location.pathname))
       window.location.replace('/');
@@ -25,7 +22,7 @@
         window.location.replace('/');
       else 
         resolve();
-    }, 100);
+    }, 300);
   })
 
 </script>
