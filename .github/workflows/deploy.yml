@@ -47,10 +47,11 @@ jobs:
         uses: actions/download-artifact@v1
         with:
           name: static
-      - name: Move Static Files To Site Folder ➡️
-        run: mv static/* site
-      - name: Create 404.html ➕
-        run: cp site/index.html site/404.html
+      - name: Create and move files ➕
+        run: |
+          mkdir site/static
+          mv static/* site/static
+          cp site/index.html site/404.html
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
