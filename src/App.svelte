@@ -28,7 +28,7 @@
         window.location.href = BASE_URL;
       else 
         resolve();
-    }, 300);
+    }, 1000);
   })
 
   const logout = () => {
