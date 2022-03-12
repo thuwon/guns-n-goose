@@ -1,3 +1,7 @@
+<svelte:head>
+    <title>Guns N' Goose - Authentication</title>
+</svelte:head>
+
 <script>
   import { db, db_user } from '@/user.js';
   import AuthUsername from './AuthUsername.svelte';

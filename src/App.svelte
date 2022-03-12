@@ -5,7 +5,7 @@
   import About from '@/routes/about/About.svelte';
   import TermsOfService from '@/routes/terms-of-service/TermsOfService.svelte';
   import PrivacyNotice from '@/routes/privacy-notice/PrivacyNotice.svelte';
-  import { user } from '@/user';
+  import { user, db_user } from '@/user.js';
 
   const BASE_URL = window.location.host === 'guns-n-goose.github.io' ? window.location.origin + '/guns-n-goose' : window.location.origin
 
@@ -30,6 +30,11 @@
     }, 300);
   })
 
+  const logout = () => {
+    db_user.leave();
+    user.set('');
+    window.location.reload();
+  }
 </script>
 
 <main class="w-full h-full grid bg-gray-100">
@@ -37,6 +42,6 @@
     <Loader/>
   {:then}
     <svelte:component this={routes[window.location.pathname].component}/>
-    <button on:click={() => user.logout()} class="absolute bottom-0">Logout</button>
+    <button on:click={logout} class="absolute bottom-0">Logout</button>
   {/await}
 </main>

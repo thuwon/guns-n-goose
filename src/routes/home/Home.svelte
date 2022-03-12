@@ -1,3 +1,7 @@
+<svelte:head>
+    <title>Guns N' Goose</title>
+</svelte:head>
+
 <script>
   import { user } from '@/user.js';
 </script>
