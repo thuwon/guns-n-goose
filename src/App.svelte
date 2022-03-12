@@ -1,24 +1,28 @@
 <script>
   import Loader from '@/components/Loader.svelte';
-  import Home from '@/components/Home.svelte';
-  import Auth from '@/components/Auth.svelte';
-  import About from '@/components/About.svelte';
+  import Home from '@/routes/home/Home.svelte';
+  import Auth from '@/routes/auth/Auth.svelte';
+  import About from '@/routes/about/About.svelte';
+  import TermsOfService from '@/routes/terms-of-service/TermsOfService.svelte';
+  import PrivacyNotice from '@/routes/privacy-notice/PrivacyNotice.svelte';
 
   import { user } from './user';
 
-  const routes = [
-    {'path': '/', 'component': Home},
-    {'path': '/auth', 'component': Auth},
-    {'path': '/about', 'component': About},
-  ]
+  const routes = {
+    '/': {component: Home, access: 'loggedIn'},
+    '/auth': {component: Auth, access: 'loggedOut'},
+    '/about': {component: About, access: ''},
+    '/terms-of-service': {component: TermsOfService, access: ''},
+    '/privacy-notice':  {component: PrivacyNotice, access: ''},
+  }
 
-  const loadApp = new Promise((resolve, reject) => {
-    if (!routes.map(route => route.path).includes(window.location.pathname))
+  const loadApp = new Promise((resolve) => {
+    if (!routes[window.location.pathname])
       window.location.replace('/');
     setTimeout(() => {
-      if (window.location.pathname !== '/auth' && !$user)
+      if (routes[window.location.pathname].access === 'loggedIn' && !$user)
         window.location.replace('/auth');
-      else if (window.location.pathname === '/auth' && $user)
+      else if (routes[window.location.pathname].access === 'loggedOut' && $user)
         window.location.replace('/');
       else 
         resolve();
@@ -31,12 +35,7 @@
   {#await loadApp}
     <Loader/>
   {:then}
-    {#each routes as route}
-      {#if window.location.pathname === route.path}
-        <svelte:component this={route.component}/>
-      {/if}
-    {/each}
-
+    <svelte:component this={routes[window.location.pathname].component}/>
     <button on:click={() => user.logout()} class="absolute bottom-0">Logout</button>
   {/await}
 </main>
