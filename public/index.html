@@ -10,9 +10,28 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.23.0/prism.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.23.0/plugins/normalize-whitespace/prism-normalize-whitespace.min.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style type="text/css">
+      body:before {
+        content: attr(message);
+      }
+    </style>
   </head>
   <body>
     <div id="__snel"></div>
+    <script>
+      (() => {
+        const redirect = sessionStorage.redirect;
+        delete sessionStorage.redirect;
+        if (redirect && redirect !== location.href) {
+          history.replaceState(null, null, redirect);
+          // REMOVE THIS - just showing the redirect route in the UI
+          document.body.setAttribute('message', 'This page was redirected by 404.html, from the route: ' + redirect);
+        } else {
+          // REMOVE THIS - just showing the redirect route in the UI
+          document.body.setAttribute('message', 'This page was loaded directly from the index.html file');
+        }
+      })();
+    </script>
     <script type="module" src="/dist/main.js"></script>
     <!-- injected by snel don't remove it -->
     <script src="/__SNEL__HOT__RELOADING.js"></script>
