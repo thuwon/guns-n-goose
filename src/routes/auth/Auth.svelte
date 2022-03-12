@@ -30,7 +30,7 @@
   const handleRegister = (event) => {
     db_user.create(username, event.detail.password, ({ err }) => {
       if (err) error = err;
-      else login();
+      else handleLogin(event);
     })
   }
   const handleLogin = (event) => {
