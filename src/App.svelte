@@ -8,6 +8,7 @@
   import { user, db_user } from '@/user.js';
 
   const BASE_URL = window.location.host === 'guns-n-goose.github.io' ? window.location.origin + '/guns-n-goose' : window.location.origin
+  const PATH = window.location.href.replace(BASE_URL, '')
 
   const routes = {
     '/': {component: Home, access: 'loggedIn'},
@@ -18,12 +19,12 @@
   }
 
   const loadApp = new Promise((resolve) => {
-    if (!routes[window.location.pathname])
+    if (!routes[PATH])
       window.location.href = BASE_URL;
     setTimeout(() => {
-      if (routes[window.location.pathname].access === 'loggedIn' && !$user)
+      if (routes[PATH].access === 'loggedIn' && !$user)
         window.location.href = BASE_URL + '/auth';
-      else if (routes[window.location.pathname].access === 'loggedOut' && $user)
+      else if (routes[PATH].access === 'loggedOut' && $user)
         window.location.href = BASE_URL;
       else 
         resolve();
