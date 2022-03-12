@@ -1,16 +1,1 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title>...</title>
-  <script>
-    sessionStorage.redirect = location.href;
-  </script>
-  <meta http-equiv="refresh" content="0;URL='/guns-n-goose'"></meta>
-</head>
-  <body>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-  </body>
-</html>
+<!DOCTYPE html><html lang="en"> <head> <meta charset="utf-8"> <meta name="viewport" content="width=device-width,initial-scale=1"> <link rel="stylesheet" href="./83b0a281833f5bd0c7fdc6f54ee9c7f9317a0f25843319c3d5012becd41a2c47.css"> <link rel="icon" type="image/png" href="https://svelte.dev/favicon.png"> <link rel="stylesheet" href="https://unpkg.com/flowbite@1.3.4/dist/flowbite.min.css"> <script src="https://cdn.tailwindcss.com"></script> <style type="text/css"> body:before { content: attr(message); } </style> </head> <body> <div id="__snel"></div> <script> (() => { const redirect = sessionStorage.redirect; delete sessionStorage.redirect; if (redirect && redirect !== location.href) { history.replaceState(null, null, redirect); // REMOVE THIS - just showing the redirect route in the UI document.body.setAttribute('message', 'This page was redirected by 404.html, from the route: ' + redirect); } else { // REMOVE THIS - just showing the redirect route in the UI document.body.setAttribute('message', 'This page was loaded directly from the index.html file'); } })(); </script> <script type="module" src="./bc8a8be16f74d68f84183c5dd4fb311be7b0eb1500bd3a9270532f5aa1007319.js"></script> <script src="https://unpkg.com/flowbite@1.3.4/dist/flowbite.js"></script> </body></html>
