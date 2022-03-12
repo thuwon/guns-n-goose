@@ -5,12 +5,9 @@
   import About from '@/routes/about/About.svelte';
   import TermsOfService from '@/routes/terms-of-service/TermsOfService.svelte';
   import PrivacyNotice from '@/routes/privacy-notice/PrivacyNotice.svelte';
+  import { user } from '@/user';
 
-  import { user } from './user';
-  
-  console.log(window.location.host)
   const BASE_URL = window.location.host === 'guns-n-goose.github.io' ? window.location.origin + '/guns-n-goose' : window.location.origin
-  console.log(BASE_URL)
 
   const routes = {
     '/': {component: Home, access: 'loggedIn'},
@@ -21,7 +18,7 @@
   }
 
   const loadApp = new Promise((resolve) => {
-    /*if (!routes[window.location.pathname])
+    if (!routes[window.location.pathname])
       window.location.href = BASE_URL;
     setTimeout(() => {
       if (routes[window.location.pathname].access === 'loggedIn' && !$user)
@@ -30,7 +27,7 @@
         window.location.href = BASE_URL;
       else 
         resolve();
-    }, 300);*/
+    }, 300);
   })
 
 </script>
