@@ -9,6 +9,7 @@
 
   const BASE_URL = window.location.host === 'guns-n-goose.github.io' ? window.location.origin + '/guns-n-goose' : window.location.origin
   const PATH = window.location.href.replace(BASE_URL, '')
+  console.log(PATH)
 
   const routes = {
     '/': {component: Home, access: 'loggedIn'},
@@ -28,7 +29,7 @@
         window.location.href = BASE_URL;
       else 
         resolve();
-    }, 1000);
+    }, 10000);
   })
 
   const logout = () => {
