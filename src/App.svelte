@@ -8,6 +8,8 @@
 
   import { user } from './user';
 
+  const BASE_URL = window.location.host === 'guns-n-goose.github.io' ? window.location.origin + '/guns-n-goose' : window.location.origin
+
   const routes = {
     '/': {component: Home, access: 'loggedIn'},
     '/auth': {component: Auth, access: 'loggedOut'},
@@ -18,12 +20,12 @@
 
   const loadApp = new Promise((resolve) => {
     if (!routes[window.location.pathname])
-      window.location.replace('/');
+      window.location.href = BASE_URL;
     setTimeout(() => {
       if (routes[window.location.pathname].access === 'loggedIn' && !$user)
-        window.location.replace('/auth');
+        window.location.href = BASE_URL + '/auth';
       else if (routes[window.location.pathname].access === 'loggedOut' && $user)
-        window.location.replace('/');
+        window.location.href = BASE_URL;
       else 
         resolve();
     }, 300);
