@@ -43,7 +43,7 @@
   {#await loadApp}
     <Loader/>
   {:then}
-    <svelte:component this={routes[window.location.pathname].component}/>
+    <svelte:component this={routes[PATH].component}/>
     <button on:click={logout} class="absolute bottom-0">Logout</button>
   {/await}
 </main>
