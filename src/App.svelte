@@ -7,9 +7,8 @@
   import PrivacyNotice from '@/routes/privacy-notice/PrivacyNotice.svelte';
   import { user, db_user } from '@/user.js';
 
-  const BASE_URL = window.location.host === 'guns-n-goose.github.io' ? window.location.origin + '/guns-n-goose' : window.location.origin
+  const BASE_URL = window.location.host === 'guns-n-goose.github.io' ? window.location.origin + '/guns-n-goose': window.location.origin;
   const PATH = window.location.href.replace(BASE_URL, '')
-  console.log(PATH)
 
   const routes = {
     '/': {component: Home, access: 'loggedIn'},
@@ -20,8 +19,8 @@
   }
 
   const loadApp = new Promise((resolve) => {
-    //if (!routes[PATH])
-      //window.location.href = BASE_URL;
+    if (!routes[PATH])
+      window.location.href = BASE_URL;
     setTimeout(() => {
       if (routes[PATH].access === 'loggedIn' && !$user)
         window.location.href = BASE_URL + '/auth';
@@ -29,7 +28,7 @@
         window.location.href = BASE_URL;
       else 
         resolve();
-    }, 10000);
+    }, 300);
   })
 
   const logout = () => {
