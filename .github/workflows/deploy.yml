@@ -14,21 +14,24 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
-
       - name: Install Deno 🔄
         uses: denolib/setup-deno@v2
         with:
           deno-version: v1.x
-
       - name: Build 🛠️
         run: |
           deno run --allow-run --allow-read https://deno.land/x/snel/install.ts
           trex run build
-      - name: Upload Artifacts 🔺
+      - name: Upload Site Artifacts 🔺
         uses: actions/upload-artifact@v1
         with:
           name: site
           path: dist
+      - name: Upload Static Artifacts 🔺
+        uses: actions/upload-artifact@v1
+        with:
+          name: static
+          path: public/guns-n-goose
 
   deploy:
     needs: [build]
@@ -36,16 +39,18 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2.3.1
-
-      - name: Download Artifacts 🔻
+      - name: Download Site Artifacts 🔻
         uses: actions/download-artifact@v1
         with:
           name: site
-
+      - name: Download Static Artifacts 🔻
+        uses: actions/download-artifact@v1
+        with:
+          name: static
+      - name: Create 404.html ➕
+        run: cp index.html 404.html
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@4.1.4
         with:
           branch: gh-pages
           folder: "site"
-          clean-exclude: |
-            404.html
